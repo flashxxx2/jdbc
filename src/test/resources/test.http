@@ -1,0 +1,36 @@
+GET http://localhost:8080/walls/1
+
+###
+
+POST http://localhost:8080/media
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="../jakarta.png"
+Content-Type: image/png
+
+< ./jakarta.png
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8080/media
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="../jakarta.mp3"
+Content-Type: audio/mpeg
+
+< ./jakarta.mp3
+--WebAppBoundary--
+###
+
+GET http://localhost:8080/demo/json
+
+###
+
+GET http://localhost:8080/demo/body
+
+###
+
+GET http://localhost:8080/demo/jsp
