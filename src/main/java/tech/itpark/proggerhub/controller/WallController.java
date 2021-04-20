@@ -10,13 +10,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/walls/{id}")
+@RequestMapping("/walls")
 @RequiredArgsConstructor
 public class WallController {
   private final PostService service;
 
   // TODO: GET /walls/{id}
-  @GetMapping
+  @GetMapping("/getAll")
   // @RequestMapping(method = RequestMethod.GET)
   // ?lastSeenId=xxx&perPage=xxx
   public List<PostDto> getAll(
@@ -24,6 +24,11 @@ public class WallController {
       @RequestParam Optional<Integer> perPage
   ) {
     return service.getAll(lastSeenId, perPage.orElse(PostService.MAX_PER_PAGE));
+  }
+
+  @PostMapping("/post")
+  public PostDto postRowAndReturnParams() {
+    return service.postAndReturnParams();
   }
 
   @GetMapping("/{postId}")

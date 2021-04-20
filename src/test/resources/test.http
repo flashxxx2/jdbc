@@ -1,4 +1,4 @@
-GET http://localhost:8080/walls/1
+GET http://localhost:8080/walls/getAll
 
 ###
 
@@ -34,3 +34,7 @@ GET http://localhost:8080/demo/body
 ###
 
 GET http://localhost:8080/demo/jsp
+
+###
+
+POST http://localhost:8080/walls/post

@@ -16,5 +16,4 @@ public interface PostMapper {
   List<Post> fromDtos(List<PostDto> dtos);
   List<PostDto> fromModels(List<Post> models);
 
-  List<PostDto> fromDto(Post posts);
 }

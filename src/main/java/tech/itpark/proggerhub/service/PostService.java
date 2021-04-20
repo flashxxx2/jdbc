@@ -25,8 +25,8 @@ public class PostService {
     return postMapper.fromModels(repository.getAll());
   }
 
-  public List<PostDto> postAndReturnParams(long lastSeenId, int perPage) {
-    return postMapper.fromDto(repository.post());
+  public PostDto postAndReturnParams() {
+    return postMapper.fromModel(repository.post());
   }
 
   public PostDto getById(long postId) {
