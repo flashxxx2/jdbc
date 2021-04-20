@@ -4,16 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
-  private long id; // boxing/unboxing
+  private Long id; // boxing/unboxing
   private Author author;
   private String content;
   private String attachment;
-  // long id = post.getId(); id.toLong() -> NPE
-  private long created;
+  private Long created;
 
   @Data
   @NoArgsConstructor

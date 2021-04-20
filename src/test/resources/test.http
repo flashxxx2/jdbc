@@ -37,4 +37,29 @@ GET http://localhost:8080/demo/jsp
 
 ###
 
+POST http://localhost:8080/walls/return
+Content-Type: application/json
+
+{
+  "content": "user",
+  "attachment": "курица"
+}
+
+###
+
 POST http://localhost:8080/walls/post
+Content-Type: application/json
+
+{
+  "content": "контент",
+  "attachment": "кошка"
+}
+
+###
+
+GET http://localhost:8080/walls/2
+
+###
+
+DELETE http://localhost:8080/walls/9
+

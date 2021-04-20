@@ -39,11 +39,15 @@ public class PostMapperImpl implements PostMapper {
 
         PostDto postDto = new PostDto();
 
-        postDto.setId( model.getId() );
+        if ( model.getId() != null ) {
+            postDto.setId( model.getId() );
+        }
         postDto.setAuthor( authorToAuthor1( model.getAuthor() ) );
         postDto.setContent( model.getContent() );
         postDto.setAttachment( model.getAttachment() );
-        postDto.setCreated( model.getCreated() );
+        if ( model.getCreated() != null ) {
+            postDto.setCreated( model.getCreated() );
+        }
 
         return postDto;
     }

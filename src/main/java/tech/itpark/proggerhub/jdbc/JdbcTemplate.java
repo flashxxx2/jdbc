@@ -40,9 +40,15 @@ public interface JdbcTemplate {
             try (
                     final var rs = stmt.executeQuery();
             ) {
-                return rowMapper.mapRow(rs);
-            }
+                if (rs.next()) {
+                    return rowMapper.mapRow(rs);
+                }
+            } return null;
         });
+    }
+
+    static void queryDelete(DataSource ds, String sql) {
+        execute(ds, sql, PreparedStatement::executeQuery);
     }
 
     private static <T> T execute(DataSource ds, String sql, Object[] args, Executor<T> executor) {
@@ -54,6 +60,19 @@ public interface JdbcTemplate {
                 Object arg = args[i];
                 stmt.setObject(i + 1, arg);
             }
+
+            return executor.execute(stmt);
+        } catch (SQLException e) {
+            throw new DataAccessException(e);
+        }
+    }
+
+
+    private static <T> T execute(DataSource ds, String sql, Executor<T> executor) {
+        try (
+                final var conn = ds.getConnection();
+                final var stmt = conn.prepareStatement(sql);
+        ) {
 
             return executor.execute(stmt);
         } catch (SQLException e) {
