@@ -57,9 +57,20 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/walls/2
+GET http://localhost:8080/walls/18
 
 ###
 
-DELETE http://localhost:8080/walls/9
+DELETE http://localhost:8080/walls/21
+
+###
+
+POST http://localhost:8080/walls/update
+Content-Type: application/json
+
+{
+  "id": 31,
+  "content": "update",
+  "attachment": "update"
+}
 

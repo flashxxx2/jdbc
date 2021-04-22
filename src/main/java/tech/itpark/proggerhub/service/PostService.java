@@ -22,19 +22,24 @@ public class PostService {
     return postMapper.fromModels(repository.getAll());
   }
 
-  public PostDto postAndReturnParams(String content, String attachment) {
-    return postMapper.fromModel(repository.postAndReturn(content, attachment));
+  public PostDto postAndReturnParams(PostDto postDto) {
+    return postMapper.fromModel(repository.postAndReturn(postDto));
   }
 
-  public PostDto post(String content, String attachment) {
-    return postMapper.fromModel(repository.post(content, attachment));
+  public void post(PostDto postDto) {
+    repository.post(postDto);
   }
 
   public PostDto getById(long postId) {
-    return Optional.ofNullable(postMapper.fromModel(repository.get(postId))).orElseThrow(NotFoundException::new);
+    return Optional.ofNullable(postMapper.fromModel(repository.get(postId)))
+            .orElseThrow(NotFoundException::new);
   }
 
   public void deleteById(long postId) {
     repository.delete(postId);
+  }
+
+  public void update(PostDto postDto) {
+    repository.update(postDto);
   }
 }

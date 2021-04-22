@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 // pstms -> set(i, x) -> 1 to count(?)
 // CRUD
@@ -43,12 +44,22 @@ public interface JdbcTemplate {
                 if (rs.next()) {
                     return rowMapper.mapRow(rs);
                 }
-            } return null;
+            }
+            return null;
         });
     }
 
-    static void queryDelete(DataSource ds, String sql) {
-        execute(ds, sql, PreparedStatement::executeQuery);
+    static void queryInsert(DataSource ds, String sql, RowMapper<Post> rowMapper) {
+        execute(ds, sql, stmt -> {
+            try (
+                    final var rs = stmt.executeQuery();
+            ) {
+                if (rs.next()) {
+                    return rowMapper.mapRow(rs);
+                }
+            }
+            return null;
+        });
     }
 
     private static <T> T execute(DataSource ds, String sql, Object[] args, Executor<T> executor) {

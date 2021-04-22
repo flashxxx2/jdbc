@@ -24,17 +24,18 @@ public class WallController {
   }
 
   @PostMapping("/return")
-  public PostDto postRowAndReturnParams(@RequestParam String content,
-                                        @RequestParam String attachment
-  ) {
-    return service.postAndReturnParams(content, attachment);
+  public PostDto postRowAndReturnParams(@RequestBody PostDto postDto) {
+    return service.postAndReturnParams(postDto);
   }
 
   @PostMapping("/post")
-  public PostDto post(@RequestParam String content,
-                      @RequestParam String attachment
-  ) {
-    return service.post(content, attachment);
+  public void post(@RequestBody PostDto postDto) {
+    service.post(postDto);
+  }
+
+  @PostMapping("/update")
+  public void update(@RequestBody PostDto postDto) {
+    service.update(postDto);
   }
 
   @GetMapping("/{postId}")
